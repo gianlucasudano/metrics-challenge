@@ -1,0 +1,16 @@
+{
+  "example": [
+    {
+      "description": "mouse gaming",
+      "id": 1,
+      "inStock": true,
+      "name": "mouse"
+    },
+    {
+      "description": "keyboard gaming",
+      "id": 2,
+      "inStock": true,
+      "name": "keyboard"
+    }
+  ]
+}
