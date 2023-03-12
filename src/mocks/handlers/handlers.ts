@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { rest } from 'msw';
+import { expectedOutputMetricsGet } from './mocks';
 
 export const exampleGetResponseMocked = [
   {
@@ -70,6 +71,15 @@ export const postExampleFailedResponseHandler = rest.post(
         error: { message: 'Network Error' },
       })
     );
+  }
+);
+
+// metrics
+// Handles a GET / request
+export const getMetricsHappyResponseHandler = rest.get(
+  '/example',
+  (_req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(expectedOutputMetricsGet));
   }
 );
 

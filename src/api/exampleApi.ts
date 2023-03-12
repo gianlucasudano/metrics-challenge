@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import axiosInstance from './axiosInstance';
 
 export type ExampleItem = {
