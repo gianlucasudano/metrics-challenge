@@ -162,3 +162,5 @@ To run all tests, open a new tab in your terminal and execute the command `npm r
 
 `todo, desiderable`
      * generate the initial db entries on running the server
+     * src/queries/normalizers.ts date formatted fails on testing (difference time between server and local?) 
+          * postponed problem: will format in the FE

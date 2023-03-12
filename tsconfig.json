@@ -24,6 +24,7 @@
           "queries/*": [ "./src/queries/*" ],
           "pages/*": [ "./src/pages/*" ],
           "mocks/*": [ "./src/mocks/*" ],
+          "helpers/*": [ "./src/helpers/*" ],
         }
   },
   "include": ["src", ".eslintrc.cjs", "prettier.config.cjs", "vite.config.ts"],
