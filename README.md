@@ -1,25 +1,57 @@
-# Web Dev Lab (WIP)
+#  Autofill Timesheet: metrics visualization
+I imaging a scenario, where the team is in front a problem regarding the time required for filling the timesheet.
 
-## Why a new template?
+The scope of this challenge, is to build a Frontend + Backend application that allows the user to post and visualize metrics in a usable way.
 
-I developed a starter web application using the stack technologies I have used in my previous work experience. The purpose of this project was to refresh my knowledge and have a ready-to-use tool for prototyping and studying.
+#
+`the scenario`
+## Why / The problem
+* The time spent to complete at end of the month the timesheet is too long.
+* Some utility are already available, but are not enough to resolve the problem.
+* Some existing metrics return that the time spent on completing the timesheet is in a range of 15 minutes and 45 minutes.
+* Our customer satisfaction KPI values are impacted by the problem
 
-The project is still a work in progress and has not been completed yet. There are currently some examples available on the "example" page, with more to be added in the future.
+## How / The proposed solution
+Adding a new utility to the timesheet page, that allow the user to autofill the timesheet connecting it to it's calendar, with the scope of reduce drastically the time for the required effort.
 
-It's worth noting that I used MUI for this project to speed up implementation, even though I hadn't used it in any of my past work experiences.
+In order to reduce risk and validate the assumptions:
+* an MVP version is realead in production and available only to the 10% of users that have access to the Timesheet page and user are using google calendar.
+* are collected some metrics useful to determine if the required time for the task is decreasing
 
+Are monitored four user journey:
+* `Happy path: the user in two steps is able to autofill the timesheet.`
+     * the user click on "autofill form calendar" button
+     * the user review the entries and submit the autofilled timesheet
+
+* `Half happy path with edit: the user in three steps is able to autofill the timesheet.`
+     * the user click on "autofill form calendar" button
+     * the user review the entries and edit the timesheet
+     * the user submit the edited timesheet
+
+* `Unhappy path: the user is not able to use the feature.`
+     * the user click on "autofill form calendar" button
+     * the user review the entries and click on cancell (a survey is shown)
+     * the user click on "skip survey" button
+
+* `Unhappy path with survey data: the user is not able to use the feature and explain us why can't use the feature.`
+     * the user click on "autofill form calendar" button
+     * the user review the entries and click on cancell (a survey is shown)
+     * the user give us a feedback click on "submit survey" button
+
+## What / The expectaction
+In two months, enough data are collected to compare with the earliest report and determine if the goal is reached, then continue to improve the feature or the we need to consider the test as a failure and is required to find an other solution to the problem.
+#
 
 # Installation
 
 Download, or clone the repo in one folder and install packages.
-You can also use the repo as template, and create a new project strating from this.
 
 ```bash
 To install dependencies use `npm install`
 ```
 
 # Usage
-The project is focused on the front-end and is connected to a JSON server that is running locally.
+The project is connected to a JSON server that is running locally.
 
 To run the app, open your terminal and execute the command `npm run dev`. Once the app has started, you should see something similar to the following.
 ###  Runs the app `npm run dev`
@@ -46,8 +78,8 @@ To run the json server, open a new tab in your terminal and execute the command 
      http://localhost:3000
 ```
 #
-### Navigates on the browser `http://localhost:5173/#/example`
-Once the app and the server are running, open a browser and visit this page: http://localhost:5173/#/example
+### Navigates on the browser `http://localhost:5173`
+Once the app and the server are running, open a browser and visit this page: http://localhost:5173
 #
 To run all tests, open a new tab in your terminal and execute the command `npm run test`. Once the tests has executed, you should see something similar to the following.
 ### Runs the tests `npm run test`
@@ -68,7 +100,7 @@ To run all tests, open a new tab in your terminal and execute the command `npm r
 ```
 
 #
-## The project utilized the following tools:
+## Used tools:
 
 - "vite": https://vitejs.dev/
 - "vitest": https://vitest.dev/
@@ -82,5 +114,51 @@ To run all tests, open a new tab in your terminal and execute the command `npm r
 - "json-server": https://www.npmjs.com/package/json-server
 - "MUI": https://mui.com/
 
+#
+# Notes
 
+`the approach`
+* In order to work to this challeng in a confortable way for me, I imagined a scenario build on a realistic model / procedure of work.
 
+     * understand the problem
+     * respond to all doubts
+     * solutions investigation
+     * deepen both technical and non-technical topics
+     * task and prioritization
+     * implementation
+* To speed up the implementation I used a starter web application created previously by me  [ https://github.com/gianlucasudano/web-dev-lab#readme ]
+
+`task and prioritization`
+
+1) Use the collected material during the initial analysis
+     * Start writing the README
+     * Reuse the investifation code, improving it, adapting it to the project architecture, and test it
+2) Handle the GET api
+     * handler api
+     * hook queries to consume data on the frontend
+     * mock api with MSW
+3) Create the page layout and consume GET data
+     * page layout
+     * render the received result
+     * handle state returned by the query
+4) Create a component that consume the metric
+     * component and test
+5) Show the metrics related to the user journey: 4 cases
+     * Happy path: [ 'IMPORT_FROM_CALENDAR', MODAL_SUBMIT' ]
+     * Half happy path: [ 'IMPORT_FROM_CALENDAR', 'MODAL_EDIT', MODAL_SUBMIT' ]
+     * Unhappy path: [ 'IMPORT_FROM_CALENDAR', 'MODAL_SKIP_SURVEY' ]
+     * Unhappy path with survey data: [ 'IMPORT_FROM_CALENDAR', 'MODAL_SURVEY', 'MODAL_SUBMIT_SURVEY' ]
+6) Handle the POST api
+     * handler api
+     * hook mutation to post data on the frontend
+     * mock api with MSW
+7) Create a component that allows the user to post a new entry in the DB
+     * select an "event"
+     * select the date (in a range of two months)
+     * submit
+     * integrate in the page
+8) Explore and test the solution
+     * collect and list eventual improvements and desiderable
+
+`todo, desiderable`
+     * generate the initial db entries on running the server
