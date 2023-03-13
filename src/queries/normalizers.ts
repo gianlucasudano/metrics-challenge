@@ -1,4 +1,4 @@
-import { secondToHumanReadable } from 'helpers/helpers';
+import { secondToHumanReadable, percComparedToDays } from 'helpers/helpers';
 
 enum Names {
   Import = 'IMPORT_FROM_CALENDAR',
@@ -27,6 +27,7 @@ export type MetricOutput = {
   totalValue: Record<string, string>;
   latestDate: number;
   earliestDate: number;
+  percentageToDays: number;
 };
 
 type GetGroupedMetrics = (input: TymesMetric) => Record<string, MetricOutput>;
@@ -79,8 +80,13 @@ const getGroupedMetrics: GetGroupedMetrics = (input) => {
       averagePerMinute,
       totalActions,
       totalValue: secondToHumanReadable(totalValue),
+      totalValueSecs: totalValue,
       latestDate,
       earliestDate,
+      percentageToDays: percComparedToDays(
+        totalValue,
+        totalTime / MILLISECONDS
+      ),
     };
   });
 
@@ -88,7 +94,54 @@ const getGroupedMetrics: GetGroupedMetrics = (input) => {
     acc[currentGroup.name] = currentGroup;
     return acc;
   }, {} as Record<string, MetricOutput>);
+
   return groupedByName;
+};
+
+const happyPath = [Names.Import, Names.Submit];
+const halfHappyPath = [Names.Import, Names.Edit, Names.Submit];
+const unhappyPath = [Names.Import, Names.Skip];
+const unhappyPathSurvey = [Names.Import, Names.Survey, Names.SurveySubmit];
+
+const paths = {
+  happyPath,
+  halfHappyPath,
+  unhappyPath,
+  unhappyPathSurvey,
+};
+
+export const getJourneys = (groupedMetrics) => {
+  const journeyKeys = Object.keys(paths);
+  const journeysByName = journeyKeys.reduce((acc, currentJourney) => {
+    const journeysData = paths[currentJourney].map((journey: Names) => {
+      return groupedMetrics[journey];
+    });
+    const percentage = journeysData.reduce(
+      (acc, currentData) => acc + currentData.percentageToDays,
+      0
+    );
+    const totalHumanReadable = journeysData.reduce(
+      (acc, currentData) => acc + currentData.totalValueSecs,
+      0
+    );
+    const endDate = [
+      ...journeysData.map((journey) => journey.earliestDate),
+    ].sort((a, b) => a - b)[0];
+
+    const startDate = [
+      ...journeysData.map((journey) => journey.latestDate),
+    ].sort((a, b) => a - b)[0];
+
+    acc[currentJourney] = {
+      percentage,
+      totalHumanReadable: secondToHumanReadable(totalHumanReadable),
+      endDate,
+      startDate,
+    };
+    return acc;
+  }, {});
+
+  return journeysByName;
 };
 
 export default getGroupedMetrics;

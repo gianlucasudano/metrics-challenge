@@ -14,4 +14,12 @@ function secondToHumanReadable(secs: number): Record<string, string> {
   };
 }
 
-export { padNumber, secondToHumanReadable };
+// R = N / D = 3650 / 86400 = 0.042
+// Percentage width of child container = R * 100% = 4.2%
+// percentage compared to total days
+function percComparedToDays(totalsSeconds: number, daysInSecs: number): number {
+  const ratio = totalsSeconds / daysInSecs;
+  return ratio * 100;
+}
+
+export { padNumber, secondToHumanReadable, percComparedToDays };

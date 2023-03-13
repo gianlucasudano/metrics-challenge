@@ -1,5 +1,5 @@
 import { renderWithClient } from 'src/queries/utils';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { QueryClient } from '@tanstack/react-query';
 import { App, WrappedApp } from './App';
