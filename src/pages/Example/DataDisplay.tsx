@@ -9,7 +9,7 @@ import isArray from 'lodash/isArray';
 import useGetExample, { GetExampleResponse } from 'queries/useGetExample';
 import { ExampleItem } from 'api/exampleApi';
 
-import ErrorCard from './ErrorCard';
+import ErrorCard from 'components/ErrorCard';
 
 type DataGridRow = Omit<ExampleItem, 'inStock'> & { inStock: string };
 

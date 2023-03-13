@@ -1,8 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 import { getMetrics } from 'api/metricsApi';
-import getGroupedMetrics from './normalizers';
+import { type TymesMetric } from './normalizers';
 
 export const metricsQueryKey = 'metricsList';
+
+export type MetricsResponse = {
+  isLoading: boolean;
+  data: TymesMetric;
+  isError: boolean;
+  error: AxiosError;
+};
 
 function useGetMetrics() {
   const { isLoading, data, isError, error } = useQuery({
@@ -10,9 +18,7 @@ function useGetMetrics() {
     queryFn: getMetrics,
   });
 
-  const normalizedData = getGroupedMetrics(data);
-
-  return { isLoading, normalizedData, isError, error };
+  return { isLoading, data, isError, error } as MetricsResponse;
 }
 
 export default useGetMetrics;

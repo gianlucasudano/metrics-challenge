@@ -18,18 +18,18 @@ type Metric = {
 
 export type TymesMetric = Metric[];
 
-type MetricOutput = {
+export type MetricOutput = {
   name: Names;
-  averagePerDay: Record<string, number>;
-  averagePerHour: Record<string, number>;
-  averagePerMinute: Record<string, number>;
+  averagePerDay: Record<string, string>;
+  averagePerHour: Record<string, string>;
+  averagePerMinute: Record<string, string>;
   totalActions: number;
-  totalValue: Record<string, number>;
+  totalValue: Record<string, string>;
   latestDate: number;
   earliestDate: number;
-}[];
+};
 
-type GetGroupedMetrics = (input: TymesMetric) => MetricOutput[];
+type GetGroupedMetrics = (input: TymesMetric) => Record<string, MetricOutput>;
 
 const MILLISECONDS = 1000;
 const SECOND = 1;
@@ -84,7 +84,11 @@ const getGroupedMetrics: GetGroupedMetrics = (input) => {
     };
   });
 
-  return metricOutput;
+  const groupedByName = metricOutput.reduce((acc, currentGroup) => {
+    acc[currentGroup.name] = currentGroup;
+    return acc;
+  }, {} as Record<string, MetricOutput>);
+  return groupedByName;
 };
 
 export default getGroupedMetrics;

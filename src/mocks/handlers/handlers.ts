@@ -77,7 +77,7 @@ export const postExampleFailedResponseHandler = rest.post(
 // metrics
 // Handles a GET / request
 export const getMetricsHappyResponseHandler = rest.get(
-  '/example',
+  '/metrics',
   (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json(expectedOutputMetricsGet));
   }

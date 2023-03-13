@@ -2,6 +2,6 @@
 import axiosInstance from './axiosInstance';
 
 export const getMetrics = async () => {
-  const res = await axiosInstance.get('/');
+  const res = await axiosInstance.get('/metrics');
   return res.data;
 };

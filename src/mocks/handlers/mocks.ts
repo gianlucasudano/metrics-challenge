@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 // Metrics
-export const expectedOutputMetricsGet = [
-  {
+export const expectedOutputMetricsGet = {
+  IMPORT_FROM_CALENDAR: {
     name: 'IMPORT_FROM_CALENDAR',
     averagePerDay: {
       hours: '00',
@@ -27,7 +27,7 @@ export const expectedOutputMetricsGet = [
     latestDate: 1672789230000,
     earliestDate: 1672836030000,
   },
-  {
+  MODAL_SUBMIT: {
     name: 'MODAL_SUBMIT',
     averagePerDay: {
       hours: '00',
@@ -53,4 +53,4 @@ export const expectedOutputMetricsGet = [
     latestDate: 1672789290000,
     earliestDate: 1672836330000,
   },
-];
+};
