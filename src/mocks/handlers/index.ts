@@ -5,6 +5,7 @@ export {
   handlers,
   postExampleHappyResponseHandler,
   postExampleFailedResponseHandler,
+  postMetricsHappyResponseHandler,
 } from './handlers';
 
 export { expectedOutputMetricsGet } from './mocks';

@@ -83,10 +83,25 @@ export const getMetricsHappyResponseHandler = rest.get(
   }
 );
 
+const mockMetricPost = {
+  name: 'IMPORT_FROM_CALENDAR',
+  value: 124,
+  addedAt: 1673906122000,
+};
+
+// Handles a POST /example request
+export const postMetricsHappyResponseHandler = rest.post(
+  '/metrics',
+  (_req, res, ctx) => {
+    return res(ctx.status(201), ctx.json(mockMetricPost));
+  }
+);
+
 export const handlers = [
   getExampleHappyResponseHandler,
   getExampleFailedResponseHandler,
   getExampleEmptyResponseHandler,
   postExampleHappyResponseHandler,
   postExampleFailedResponseHandler,
+  postMetricsHappyResponseHandler,
 ];

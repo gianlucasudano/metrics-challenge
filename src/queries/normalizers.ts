@@ -1,6 +1,6 @@
 import { secondToHumanReadable, percComparedToDays } from 'helpers/helpers';
 
-enum Names {
+export enum Names {
   Import = 'IMPORT_FROM_CALENDAR',
   Edit = 'MODAL_EDIT',
   Submit = 'MODAL_SUBMIT',
@@ -9,7 +9,7 @@ enum Names {
   SurveySubmit = 'MODAL_SUBMIT_SURVEY',
 }
 
-type Metric = {
+export type Metric = {
   id: number;
   name: Names;
   value: number;
