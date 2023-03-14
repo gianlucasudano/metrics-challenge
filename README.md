@@ -172,6 +172,7 @@ In general theese normalizer needs improvements and simplifications, and some lo
 * variable names can be revisited
 * missing types, missing tests
 * double check on which values are returned for latestDate, and earliestDate.
+* profiling and verify if memoization is required.
 
       
      
