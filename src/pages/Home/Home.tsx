@@ -9,6 +9,7 @@ import getGroupedMetrics, { getJourneys } from 'queries/normalizers';
 
 import JourneyWrapper from './elements/JourneyWrapper';
 import MetricCard from './elements/MetricCard';
+import AddMetricForm from './elements/AddMetricForm';
 
 function Home() {
   const { data, error }: MetricsResponse = useGetMetrics();
@@ -25,6 +26,7 @@ function Home() {
     <>
       <CssBaseline />
       <Container maxWidth="md">
+        <AddMetricForm />
         <Typography variant="h4" gutterBottom>
           Autofill Timesheet: metrics visualization
         </Typography>

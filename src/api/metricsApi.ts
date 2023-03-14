@@ -7,7 +7,7 @@ export const getMetrics = async () => {
   return res.data;
 };
 
-type MetricPost = {
+export type MetricPost = {
   name: Names;
   value: number;
   addedAt: number;
@@ -17,4 +17,4 @@ export const createMetric = async ({
   metricPost,
 }: {
   metricPost: MetricPost;
-}) => axiosInstance.post('/example', metricPost);
+}) => axiosInstance.post('/metrics', metricPost);
