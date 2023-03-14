@@ -161,14 +161,17 @@ To run all tests, open a new tab in your terminal and execute the command `npm r
      * collect and list eventual improvements and desiderable
 
 `todo, desiderable`
-     * generate the initial db entries on running the server
-     * src/queries/normalizers.ts date formatted fails on testing (difference time between server and local?) 
-          * postponed problem: will format in the FE
-     * move mock data to src/mocks/handlers/mocks.ts
-     * split if possible the function getGroupedMetrics in three and reduce left to right with a pipe function https://medium.com/javascript-scene/reduce-composing-software-fe22f0c39a1d.
-     In general theese normalizer needs improvements and simplifications, and some logic doublecheck.
-     * variable names are not all clear
-     * missing types, missing tests
-     * double check on which values are returned for latestDate, and earliestDate.
+
+* generate the initial db entries on running the server
+* src/queries/normalizers.ts date formatted fails on testing (difference time between server and local?) 
+     * postponed problem: will format in the FE
+* move mock data to src/mocks/handlers/mocks.ts
+* split if possible the function getGroupedMetrics in three and reduce left to right
+with a pipe function https://medium.com/javascript-scene/reduce-composing-software-fe22f0c39a1d.
+In general theese normalizer needs improvements and simplifications, and some logic doublecheck.
+* variable names can be revisited
+* missing types, missing tests
+* double check on which values are returned for latestDate, and earliestDate.
+
       
      
